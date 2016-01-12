@@ -33,30 +33,24 @@
 
   <div class="container">
     <div ng-controller="HomeController">
-      <h1>{{ helloWorld }}</h1>
-      <p>Writing this live into the browser...</p>
+      <h1 ng-click="doStuff()">{{ helloWorld }}</h1>
     </div>
   </div>
 
   <hr/>
 
   <!-- /resources1 -->
-  <div class="container">
+  <div class="container" ng-controller="HomeController">
     <h1>Resource 1</h1>
     <h2>List all resources</h2>
     <table class="table table-bordered">
       <tr>
-        <th>Attribute 1</th>
-        <th>Attribute 2</th>
-        <th>Attribute 3</th>
-        <th>Attribute 4</th>
+        <th ng-repeat="key in keys">{{ key }}</th>
         <th style="width:210px;">Options</th>
       </tr>
-      <tr>
-        <td>Lorem</td>
-        <td>Ipsum</td>
-        <td>Dolor</td>
-        <td>Sit</td>
+      <tr ng-repeat="item in persoane.data" data-id="{{ item.id }}">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
         <td>
           <a href="">
             <span class="label label-success">
@@ -64,100 +58,56 @@
               <span class="glyphicon glyphicon-folder-open"></span>
             </span>
           </a>
-          <a href="">
-            <span class="label label-primary">
+          <button ng-click="setUpdatePerson(item)" class="btn btn-info btn-xs">
               Edit
               <span class="glyphicon glyphicon-edit"></span>
-            </span>
           </a>
-          <a href="">
-            <span class="label label-danger">
+          <button ng-click="deletePersoana(item.id)" class="btn btn-danger btn-xs">
               Remove
               <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Ipsum</td>
-        <td>Lorem</td>
-        <td>Sit</td>
-        <td>Dolor</td>
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Sit</td>
-        <td>Lorem</td>
-        <td>Ipsum</td>
-        <td>Dolor</td>
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Sit</td>
-        <td>Dolor</td>
-        <td>Lorem</td>
-        <td>Ipsum</td>
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
+            </button>
           </a>
         </td>
       </tr>
     </table>
 
+    <h2>Add new person</h2>
+    <table>
+      <tr>
+        <td>ID</td>
+        <td><input type="text" class="form-control" ng-model="person.id"/></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" class="form-control" ng-model="person.name"/></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button ng-click="addPersoana(person)" class="btn btn-primary btn-xs">Add</button>
+        </td>
+      </tr>
+    </table>
+
+
+    <h2>Edit a person</h2>
+    <table>
+      <tr>
+        <td>ID</td>
+        <td><input type="text" ng-model="editPerson.id"></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" ng-model="editPerson.name"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button class="btn btn-info btn-xs" ng-click="updatePerson()">
+            Update
+          </button>
+        </td>
+      </tr>
+    </table>
+<!--
     <div class="row">
       <div class="col-md-3">
         <h2>Edit a resource1</h2>
@@ -238,7 +188,6 @@
 
   <hr/>
 
-  <!-- /resources2-->
   <div class="container">
     <h1>Resource 2</h1>
     <h2>List all resources</h2>
@@ -409,7 +358,7 @@
   </div>
 
   <hr/>
-
+-->
   <div class="container">
     <footer class="footer">
       <p class="text-muted pull-left">AWJ Base Project &copy; 2015-2016</p>
